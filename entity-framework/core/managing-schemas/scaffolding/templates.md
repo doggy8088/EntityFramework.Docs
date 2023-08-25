@@ -182,6 +182,7 @@ To scaffold these classes, you can use a third template called `EntityTypeConfig
 
 The primary purpose of reverse engineering in EF Core is to scaffold a DbContext and entity types. However, there's nothing in the tools that require you to actually scaffold code. For example, you could instead scaffold an entity relationship diagram using [Mermaid](https://mermaid-js.github.io/).
 
+
 ````T4
 <#@ output extension=".md" #>
 <#@ assembly name="Microsoft.EntityFrameworkCore" #>
@@ -205,7 +206,7 @@ erDiagram
         foreach (var foreignKey in entityType.GetForeignKeys())
         {
 #>
-    <#= entityType.Name #> <#= foreignKey.IsUnique ? "|" : "}" #>o--<#= foreignKey.IsRequired ? "|" : "o" #>| <#= foreignKey.PrincipalEntityType.Name #> : <#= foreignKey.GetConstraintName() #>
+    <#= entityType.Name #> <#= foreignKey.IsUnique ? "|" : "}" #>o--<#= foreignKey.IsRequired ? "|" : "o" #>| <#= foreignKey.PrincipalEntityType.Name #> : "<#= foreignKey.GetConstraintName() #>"
 <#
         }
 
